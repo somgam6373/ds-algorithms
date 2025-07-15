@@ -1,0 +1,21 @@
+//O(n)
+
+void insert_by_value(int arr[], int *count, int x)
+{
+    int i;
+
+    // x가 들어갈 위치 찾기
+    for (i = 0; i < *count; i++) {
+        if (arr[i] > x)
+            break;
+    }
+
+    // 뒤에서부터 하나씩 밀기
+    for (int j = *count - 1; j >= i; j--) {
+        arr[j + 1] = arr[j];
+    }
+
+    // 빈자리에 x 삽입
+    arr[i] = x;
+    (*count)++;
+}
