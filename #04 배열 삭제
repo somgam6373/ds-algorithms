@@ -1,0 +1,22 @@
+//O(n)
+
+void delete_by_value(int arr[], int *count, int x)
+{
+    int i;
+    // 삭제할 값 x의 위치 찾기
+    for (i = 0; i < *count; i++) {
+        if (arr[i] == x)
+            break;
+    }
+
+    // 값이 없으면 함수 종료
+    if (i == *count)
+        return;
+
+    // 삭제 위치부터 왼쪽으로 한 칸씩 이동
+    for (int j = i; j < *count - 1; j++) {
+        arr[j] = arr[j + 1];
+    }
+
+    (*count)--;
+}
