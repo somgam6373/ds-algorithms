@@ -1,0 +1,20 @@
+//O(n)
+
+node* node::insert(data_type item) {
+    node* curr = this;
+
+    // 삽입 위치 찾기
+    while (curr->link != NULL) {
+        if (curr->link->item > item)
+            break;
+        curr = curr->link;
+    }
+
+    // 새로운 노드 생성 및 삽입
+    node* nnode = new node;
+    nnode->item = item;
+    nnode->link = curr->link;
+    curr->link = nnode;
+
+    return nnode; 
+}
