@@ -1,3 +1,5 @@
+//O(n^2)
+
 void insert(int x, int n, int b[])
 {
     int i;
