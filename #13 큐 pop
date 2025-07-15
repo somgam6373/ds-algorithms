@@ -1,0 +1,11 @@
+//O(1)
+
+element queue::pop()
+{
+	if (isEmpty()) {
+		printf("You cannot delete from an empty queue\n");
+		exit(1); // 또는 return 에러값, 예외 처리 등
+	}
+
+	return Items[++front];
+}
