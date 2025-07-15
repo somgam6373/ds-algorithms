@@ -1,0 +1,11 @@
+//O(1)
+
+Datatype Stack::pop() {
+    if (is_Empty()) {
+        printf("Popping from empty stack\n");
+        exit(1);  // 또는 throw 예외, 또는 return 기본값
+    }
+
+    TOP--;
+    return items[TOP];
+}
