@@ -1,0 +1,10 @@
+//O(1)
+
+void Stack::push(Datatype DataItem)
+{
+    if (is_Full())
+        printf("Pushing in Full Stack\n");
+
+    Items[TOP] = DataItem;
+    TOP++;
+}
