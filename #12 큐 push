@@ -1,0 +1,11 @@
+//O(1)
+
+void queue::push(element item)
+{
+    if (isFull()) {
+        printf("Cannot add an element to a full queue\n");
+        return;  // 더 이상 삽입하지 않고 종료
+    }
+
+    Items[++rear] = item;
+}
