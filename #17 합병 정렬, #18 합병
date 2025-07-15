@@ -1,0 +1,49 @@
+//O(n log(n))
+
+//17. 합병 정렬
+
+int n;
+int* arr;
+void merge_sort(int s, int e)
+{
+	if (s == e)
+		return;
+
+	int mid = (s + e) / 2;
+
+	merge_sort(s, mid);
+	merge_sort(mid + 1, e);
+
+	merge(s, mid, mid + 1, e);
+}
+
+//18. 합병
+
+void merge(int ls, int le, int rs, int re)
+{
+	int lptr = ls, rptr = rs, bptr = 0;
+	int size = re - ls + 1;
+	int* brr = (int*)calloc(size, sizeof(int));
+
+	while (lptr <= le && rptr <= re)
+	{
+		if (arr[lptr] < arr[rptr])
+			brr[bptr++] = arr[lptr++];
+		else
+			brr[bptr++] = arr[rptr++];
+	}
+
+	// 왼쪽 잔여 복사
+	while (lptr <= le)
+		brr[bptr++] = arr[lptr++];
+
+	// 오른쪽 잔여 복사
+	while (rptr <= re)
+		brr[bptr++] = arr[rptr++];
+
+	// brr → arr 복사
+	for (int i = 0; i < size; i++)
+		arr[ls + i] = brr[i];
+
+	free(brr);
+}
