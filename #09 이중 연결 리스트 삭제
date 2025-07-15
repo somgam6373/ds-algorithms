@@ -1,0 +1,25 @@
+//O(n)
+
+void node::delete_node(data_type item) 
+{
+    node* curr = first;
+
+    while (curr->rlink != nullptr) {
+        if (curr->rlink->item == item)
+            break;
+        curr = curr->rlink;
+    }
+
+    // 찾지 못한 경우
+    if (curr->rlink == nullptr)
+        return;
+
+    node* dnode = curr->rlink;
+    curr->rlink = dnode->rlink;
+
+    // 뒤쪽 노드가 존재하면 llink 갱신
+    if (dnode->rlink != nullptr)
+        dnode->rlink->llink = curr;
+
+    delete dnode;  // 메모리 해제
+}
