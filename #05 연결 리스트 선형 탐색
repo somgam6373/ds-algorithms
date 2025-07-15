@@ -1,0 +1,11 @@
+//O(n)
+
+node* node::search(data_type item) {
+    node* curr = this;
+    while (curr != NULL) {
+        if (curr->item == item)
+            return curr;
+        curr = curr->link;
+    }
+    return NULL;
+}
