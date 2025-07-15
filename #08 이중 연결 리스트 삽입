@@ -1,0 +1,26 @@
+//O(n)
+
+void node::insert(data_type item) 
+{
+    node* curr = this;
+    
+    // 정렬된 위치 찾기
+    while (curr->rlink != nullptr) {
+        if (curr->rlink->item > item)
+            break;
+        curr = curr->rlink;
+    }
+
+    // 새 노드 생성 및 값 할당
+    node* nnode = new node;
+    nnode->item = item;
+
+    // 링크 연결
+    nnode->rlink = curr->rlink;
+    nnode->llink = curr;
+    curr->rlink = nnode;
+
+    // 뒤쪽 노드의 llink 갱신 (존재할 경우)
+    if (nnode->rlink != nullptr)
+        nnode->rlink->llink = nnode;
+}
