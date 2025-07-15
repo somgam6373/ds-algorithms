@@ -1,0 +1,22 @@
+//O(n)
+
+node* node::delete_node(data_type item) {
+    node* curr = this;
+
+    while (curr->link != NULL) {
+        if (curr->link->item == item)
+            break;
+        curr = curr->link;
+    }
+
+    // 삭제할 노드가 없으면 nullptr 반환
+    if (curr->link == NULL)
+        return nullptr;
+
+    node* dnode = curr->link;
+    curr->link = dnode->link;
+
+    delete dnode; 
+
+    return this;   // 삭제 후 자기 자신 반환 (또는 void로 바꿔도 됨)
+}
