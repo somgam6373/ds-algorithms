@@ -1,0 +1,16 @@
+void heapify_topdown(int idx)
+{
+    int left = 2 * idx, right = left + 1;
+    int index = idx;
+
+    if (left <= cnt && heap[left] > heap[index]) 
+        index = left;
+    if (right <= cnt && heap[right] > heap[index]) 
+        index = right;
+
+    if (index != idx) {
+        iswap(&heap[idx], &heap[index]);
+        heapify_topdown(index);
+    }
+}
+
