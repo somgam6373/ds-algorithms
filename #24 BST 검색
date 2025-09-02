@@ -1,0 +1,30 @@
+// O(log n)
+
+node* node::search(int x)
+{
+    if (x == key)
+    {
+        std::cout << "BingGo!!\n";
+        return this;
+    }
+    else if (x < key)
+    {
+        if (lchild != nullptr)
+            return lchild->search(x);
+        else
+        {
+            std::cout << "Not Found\n";
+            return nullptr;
+        }
+    }
+    else // x > key
+    {
+        if (rchild != nullptr)
+            return rchild->search(x);
+        else
+        {
+            std::cout << "Not Found\n";
+            return nullptr;
+        }
+    }
+}
