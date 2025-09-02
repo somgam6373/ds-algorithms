@@ -1,0 +1,56 @@
+// O(log n)
+
+#include <iostream>
+
+struct node {
+    int key;
+    node* lchild;
+    node* rchild;
+    explicit node(int k) : key(k), lchild(nullptr), rchild(nullptr) {}
+};
+
+// 오른쪽 서브트리에서 최소 키 노드 찾기
+static node* minNode(node* p) {
+    while (p && p->lchild) p = p->lchild;
+    return p;
+}
+
+// BST 삭제: root를 입력받아 x를 삭제한 뒤, "변경된 새 root"를 반환
+static node* remove_node(node* root, int x) {
+    if (!root) {
+        std::cout << "Not found " << x << " in removing\n";
+        return nullptr;
+    }
+
+    if (x < root->key) {
+        root->lchild = remove_node(root->lchild, x);
+    } else if (x > root->key) {
+        root->rchild = remove_node(root->rchild, x);
+    } else {
+        // 여기서 root가 삭제 대상
+        std::cout << "Removing " << x << "\n";
+
+        // 1) 자식 0개 (리프)
+        if (!root->lchild && !root->rchild) {
+            delete root;
+            return nullptr;
+        }
+        // 2) 자식 1개 (왼쪽만)
+        if (root->lchild && !root->rchild) {
+            node* child = root->lchild;
+            delete root;
+            return child;
+        }
+        // 2) 자식 1개 (오른쪽만)
+        if (!root->lchild && root->rchild) {
+            node* child = root->rchild;
+            delete root;
+            return child;
+        }
+        // 3) 자식 2개: 오른쪽 서브트리의 최소 노드로 대체
+        node* succ = minNode(root->rchild);
+        root->key = succ->key;                         // 값 복사
+        root->rchild = remove_node(root->rchild, succ->key); // 후속자 삭제
+    }
+    return root;
+}
