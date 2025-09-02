@@ -1,0 +1,34 @@
+//#21 이진 트리 중위 우선 탐색
+
+void inorder(nptr bt) {
+    if (bt != NULL) {
+        inorder(bt->lchild);
+        printf("%d ", bt->data);
+        inorder(bt->rchild);
+    }
+}
+
+
+//#22 이진 트리 전위 우선 탐색
+
+void preorder(nptr bt)
+{
+    if (bt != NULL)
+    {
+        printf("%d ", bt->data);   // 데이터 출력
+        preorder(bt->lchild);
+        preorder(bt->rchild);
+    }
+}
+
+
+//#23 이진 트리 후위 우선 탐색
+
+void postorder(nptr bt)
+{
+    if (bt) {
+        postorder(bt->lchild);
+        postorder(bt->rchild);
+        printf("%d ", bt->data);
+    }
+}
