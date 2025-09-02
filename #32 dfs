@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 100
+
+typedef struct Node {
+    int v;
+    struct Node* next;
+} Node;
+
+Node* graph[MAX];
+int visit[MAX];
+int n; // 정점 개수
+
+void dfs_all(int n) {
+    for (int v = 0; v < n; v++)
+        visit[v] = 0;
+    for (int v = 0; v < n; v++)
+        if (!visit[v])
+            dfs(v);
+}
+
+void dfs(int u) {
+    visit[u] = 1;
+    printf("%d ", u);
+
+    for (Node* w = graph[u]; w != NULL; w = w->next) {
+        if (!visit[w->v])
+            dfs(w->v);
+    }
+}
