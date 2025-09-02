@@ -1,0 +1,20 @@
+// 전역: int heap[], int cnt;  // 1-based max-heap 가정
+// push, pop, heapify_* 이미 구현됨
+
+void heap_sort(int* arr, int n)
+{
+    // 매 호출마다 힙 초기화(필요 시)
+    cnt = 0;
+
+    // 1) 힙에 모두 삽입
+    for (int i = 0; i < n; i++)
+        push(arr[i]);
+
+    // 2) 큰 것부터 꺼내 뒤에서 채우면 오름차순 완성
+    for (int i = n - 1; i >= 0; i--)
+        arr[i] = pop();
+}
+
+// 사용 예시
+// heap_sort(A, n);
+// for(int i=0;i<n;i++) printf("%d%c", A[i], i+1==n?'\n':' ');
