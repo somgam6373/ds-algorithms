@@ -1,0 +1,25 @@
+// O(log n)
+
+void node::insert(int x)
+{
+    // root 노드 최초 삽입을 이렇게 처리하고 싶다면
+    if (this->key == -1) {   // ← ket 오타 수정
+        this->key = x;
+        return;
+    }
+
+    if (x == this->key) {
+        std::cout << "No duplicate data\n";
+        return;
+    } else if (x < this->key) {
+        if (this->lchild)
+            this->lchild->insert(x);
+        else
+            this->lchild = new node(x);   // malloc 대신 new
+    } else {
+        if (this->rchild)
+            this->rchild->insert(x);
+        else
+            this->rchild = new node(x);   // malloc 대신 new
+    }
+}
