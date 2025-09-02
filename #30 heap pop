@@ -1,0 +1,16 @@
+int pop()
+{
+    if (cnt == 0) {
+        printf("Heap underflow!\n");
+        return -1;  // 혹은 에러 코드/예외 처리
+    }
+
+    int root = heap[1];      // 최대값
+    heap[1] = heap[cnt];     // 마지막 원소를 루트로 이동
+    cnt--;
+
+    if (cnt > 0)             // 비어 있지 않으면 정리
+        heapify_topdown(1);
+
+    return root;
+}
