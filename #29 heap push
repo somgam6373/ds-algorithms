@@ -1,0 +1,8 @@
+void push(int ndata) {
+    if (cnt >= MAX_HEAP_SIZE) {
+        printf("Heap overflow!\n");
+        return;
+    }
+    heap[++cnt] = ndata;
+    heapify_up(cnt);  // heapify_bottomup의 반복문 버전 추천
+}
